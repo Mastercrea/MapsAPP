@@ -7,6 +7,12 @@ void main() {
   runApp(MultiBlocProvider(providers: [
     BlocProvider(
       create: (context) => GpsBloc(),
+    ),
+    BlocProvider(
+      create: (context) => LocationBloc(),
+    ),
+    BlocProvider(
+      create: (context) => MapBloc(),
     )
   ], child: MapsApp()));
 }
