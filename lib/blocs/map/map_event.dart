@@ -14,3 +14,16 @@ class OnMapInitializedEvent extends MapEvent {
 
 
 }
+
+class OnStartFollowingUserEvent extends MapEvent {
+
+}
+class OnStopFollowingUserEvent extends MapEvent {}
+
+class UpdateUserPolylinesEvent extends MapEvent {
+  final List<LatLng> userLocations;
+
+  const UpdateUserPolylinesEvent(this.userLocations);
+}
+class OnToggleUserRoute extends MapEvent{}
+
