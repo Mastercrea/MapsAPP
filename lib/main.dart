@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maps_app/blocs/blocs.dart';
 import 'package:maps_app/screens/screen.dart';
+import 'package:maps_app/services/services.dart';
 
 void main() {
   runApp(MultiBlocProvider(providers: [
@@ -12,7 +13,11 @@ void main() {
       create: (context) => LocationBloc(),
     ),
     BlocProvider(
-      create: (context) => MapBloc(locationBloc: BlocProvider.of<LocationBloc>(context)),
+      create: (context) =>
+          MapBloc(locationBloc: BlocProvider.of<LocationBloc>(context)),
+    ),
+    BlocProvider(
+      create: (context) => SearchBloc(trafficService: TrafficService()),
     )
   ], child: MapsApp()));
 }

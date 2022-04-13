@@ -42,32 +42,38 @@ class _MapScreenState extends State<MapScreen> {
 
           return BlocBuilder<MapBloc, MapState>(
             builder: (context, mapState) {
-
               Map<String, Polyline> polylines = Map.from(mapState.polylines);
-              if(!mapState.showMyRoute){
+              if (!mapState.showMyRoute) {
                 polylines.removeWhere((key, value) => key == 'myRoute');
               }
-
 
               return SingleChildScrollView(
                 child: Stack(
                   children: [
-                    MapView(initialLocation: locationState.lastKnownLocation!,
-                      polylines: polylines.values.toSet(),)
+                    MapView(
+                      initialLocation: locationState.lastKnownLocation!,
+                      polylines: polylines.values.toSet(),
+                    ),
 
-                    // Todo: Buttons...
+                    const SearchBar(),
+                    const ManualMarker()
+
                   ],
                 ),
               );
             },
-
           );
           // return Center(child: Text('${state.lastKnownLocation!.latitude}, ${state.lastKnownLocation!.longitude}'),);
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: Column(mainAxisAlignment: MainAxisAlignment.end,
-          children: const [BtnToggleUserRoute(), BtnFollowUser(), BtnCurrentLocation()]),
+      floatingActionButton: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: const [
+            BtnToggleUserRoute(),
+            BtnFollowUser(),
+            BtnCurrentLocation()
+          ]),
     );
   }
 }
